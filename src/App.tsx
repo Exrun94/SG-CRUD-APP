@@ -6,7 +6,7 @@ export default function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <p className="header">Vite + React + Typescript</p>
+                <p className="header">Hello World!</p>
             </header>
         </div>
     );
