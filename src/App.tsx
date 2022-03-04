@@ -1,27 +1,17 @@
-import Logo from "./components/logo/Logo";
-import Products from "./components/products/Products";
-import Sidebar from "./components/sidebar/Sidebar";
-import Search from "./components/search/Search";
-import Button from "./components/buttons/Button";
-import MotionFrame from "./components/form/MotionFrame";
-import { GridContainer, MidContainer } from './App.styles';
-
-import React from "react";
+import React from 'react';
+import Layout from './layout/Layout'
+import { FrameMotionContextProvider } from './context/FrameMotionContext'
+import { ProductContextProvider } from './context/ProductContext'
 
 export default function App() {
-  const state = false;
+
   return (
     <>
-        <GridContainer>
-            <Sidebar />
-            <Logo />
-            <MidContainer>
-              <Search />
-              <Button />
-            </MidContainer>
-            {state && <MotionFrame />}
-            <Products />
-        </GridContainer>
+      <ProductContextProvider>
+      <FrameMotionContextProvider>
+        <Layout />
+      </FrameMotionContextProvider>
+      </ProductContextProvider>
     </>
   );
 }

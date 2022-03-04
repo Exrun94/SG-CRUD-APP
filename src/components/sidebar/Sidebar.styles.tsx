@@ -4,5 +4,5 @@ export const SidebarContainer = styled.div`
     display: flex;
     flex-direction: column;
     grid-area: sidebar;
-    background-color: var(--primary)
+    background-color: var(--accent-dark-600);
 `;
