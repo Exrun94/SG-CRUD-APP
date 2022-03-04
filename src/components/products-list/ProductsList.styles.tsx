@@ -55,14 +55,14 @@ export const ImgContainer = styled.div`
     position: relative;
     width: 16em;
     height: 16em;
-
     top: -40%;
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    
 `;
 
 export const Image = styled.img`
     max-width: 100%;
-    border-radius: 15px;
+    border-radius: 1em;
 `;
 
 export const MainInfo = styled.div`
