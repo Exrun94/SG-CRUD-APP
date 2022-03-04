@@ -22,18 +22,18 @@ export const Span = styled('span')`
         0% {
             bottom: -0.2em;
             opacity: 1;
-            color: var(--accent1);
+            color: var(--accent-dark-800);
         }
         
         50% {
             bottom: 0.2em;
-            color: var(--primary-light);
+            color: var(--accent-dark-100);
         }
 
         100% {
             bottom: 0;
             opacity: 1;
-            color: var(--primary);
+            color: var(--accent-dark-400);
         }
 }
 `

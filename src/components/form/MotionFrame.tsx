@@ -1,6 +1,6 @@
 import React from 'react'
 import FormData from './FormData';
-import { Container, Wrapper, MotionMenu  } from './MotionFrame.styles';
+import { Container, Wrapper, MotionMenu, Heading  } from './MotionFrame.styles';
 
 const dropIn = {
     hidden: {
@@ -34,6 +34,7 @@ const MotionFrame = () => {
                     animate="visible"
                     exit="exit"
                     >
+                    <Heading>Enter Product</Heading>
                     <FormData />
                 </MotionMenu>
             </Wrapper>
