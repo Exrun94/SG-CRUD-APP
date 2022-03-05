@@ -112,10 +112,11 @@ export const IconsWrapper = styled.div`
     gap: 1em;
 `;
 
-export const IconFavorite = styled.img`
+export const IconFavorite = styled.img<{isFavorite: boolean}>`
     width: 20px;
     height: 20px;
-    content: url(${iconFavorite});
+    content: url(${(props) => props.isFavorite ? iconFavoriteFill : iconFavorite});
+    
 
     &:hover {
         cursor: pointer;

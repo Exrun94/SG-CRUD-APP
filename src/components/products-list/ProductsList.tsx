@@ -11,7 +11,7 @@ import { PermissionsContext } from '../../context/PermissionsContext';
 const ProductsList = () => {
     const { onProductChange, productsList, setProductsList, onSearch } = useContext(ProductContext);
     const { onUpdatePermission, onDeletePermission } = useContext(PermissionsContext);
-    const {onDelete, onUpdate} = useProducts();
+    const {onDelete, onUpdate, onFavorite} = useProducts();
 
     const productsCollectionRef = collection(db, 'Products');
 
@@ -49,7 +49,7 @@ const ProductsList = () => {
                     </MainInfo>
 
                     <IconsWrapper>
-                        <IconFavorite />
+                        <IconFavorite onClick={() => onFavorite(product.id, product.favorite)} isFavorite={product.favorite}/>
                         {onUpdatePermission && <IconEdit onClick={() => onUpdate(product.id, product.productName, product.price, product.currency)} />}
                         {onDeletePermission && <IconDelete onClick={() => onDelete(product.id)}/>}
                     </IconsWrapper>

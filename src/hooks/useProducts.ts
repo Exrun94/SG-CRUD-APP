@@ -34,7 +34,17 @@ const useProducts = () => {
         }
     }
 
-    return {onDelete, onUpdate, onUpdateData}
+    const onFavorite = async (id: string, state: boolean) => {
+        try {
+            const productDoc = doc(db, 'Products', id,)
+            await updateDoc(productDoc, {favorite: !state})
+            setOnProductChange(!onProductChange);
+        }catch(err) {
+            console.log(err)
+        }
+    }
+
+    return {onDelete, onUpdate, onUpdateData, onFavorite}
 }
 
 export default useProducts;
