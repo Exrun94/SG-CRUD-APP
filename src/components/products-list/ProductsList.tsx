@@ -4,10 +4,12 @@ import IProduct from '../../interfaces/Product'
 import { db } from '../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { ProductContext } from '../../context/ProductContext';
+import { FrameMotionContext } from '../../context/FrameMotionContext';
 import { Container, Card, Image, ImgContainer, MainInfo, ProductName, ProductPrice, DescriptionContainer, Description, IconsWrapper, IconFavorite, IconEdit, IconDelete  } from './ProductsList.styles'
 
 const ProductsList = () => {
-    const { onProductChange, productsList, setProductsList } = useContext(ProductContext);
+    const { onProductChange, productsList, setProductsList, onSearch } = useContext(ProductContext);
+    const { setIsUpdate } = useContext(FrameMotionContext)
     const {onDelete, onUpdate} = useProducts();
 
     const productsCollectionRef = collection(db, 'Products');
@@ -31,7 +33,13 @@ const ProductsList = () => {
   return (
     <>
         <Container>
-        {productsList.map((product) => {
+        {productsList.filter((product => {
+             if(onSearch == "") {
+                return product
+              } else if (product.productName.toLowerCase().includes(onSearch.toLowerCase())) {
+                return product
+              }
+        })).map((product) => {
                         return (
             <Card key={product.id}>
                 <ImgContainer>
@@ -46,8 +54,8 @@ const ProductsList = () => {
 
                     <IconsWrapper>
                         <IconFavorite />
-                        <IconEdit onClick={() => onUpdate(product.id, product.price)}/>
-                        <IconDelete onClick={() => onDelete(product.id)} />
+                        <IconEdit onClick={() => onUpdate(product.id, product.productName, product.price, product.currency)} />
+                        <IconDelete onClick={() => onDelete(product.id)}/>
                     </IconsWrapper>
 
                 </DescriptionContainer>

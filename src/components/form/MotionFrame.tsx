@@ -1,5 +1,5 @@
 import React from 'react'
-import FormData from './FormData';
+import AddForm from './CreateForm';
 import { Container, Wrapper, MotionMenu, Heading  } from './MotionFrame.styles';
 
 const dropIn = {
@@ -23,7 +23,7 @@ const dropIn = {
     },
   };
 
-const MotionFrame = () => {
+const MotionFrame: React.FC<React.ReactNode> = ({children}) => {
   return (
     <>
         <Container>
@@ -35,7 +35,7 @@ const MotionFrame = () => {
                     exit="exit"
                     >
                     <Heading>Enter Product</Heading>
-                    <FormData />
+                    {children}
                 </MotionMenu>
             </Wrapper>
         </Container>

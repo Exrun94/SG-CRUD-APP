@@ -2,19 +2,26 @@ import { useContext } from 'react'
 import { db } from '../firebase';
 import { updateDoc, doc, deleteDoc } from 'firebase/firestore';
 import { ProductContext } from '../context/ProductContext';
+import { FrameMotionContext } from '../context/FrameMotionContext';
 
 const useProducts = () => {
-    const { onProductChange, setOnProductChange } = useContext(ProductContext);
+    const { onProductChange, setOnProductChange, } = useContext(ProductContext);
+    const { setIsUpdate, setUpdateData } = useContext(FrameMotionContext);
 
-    const onUpdate = async (id: string, price: number) => {
+    const onUpdateData = async (id: string, productName: string, price: number, currency: string) => {
         try {
             const productDoc = doc(db, 'Products', id)
-            const updatedData = {price: price + 1}
+            const updatedData = {productName, price, currency}
             await updateDoc(productDoc, updatedData);
             setOnProductChange(!onProductChange);
         } catch (err) {
             console.log(err)
         }
+    }
+
+    const onUpdate = (id: string, productName: string, price: number, currency: string) => {
+        setIsUpdate(true)
+        setUpdateData({id, productName, price, currency})
     }
 
     const onDelete = async (id: string) => {
@@ -27,7 +34,7 @@ const useProducts = () => {
         }
     }
 
-    return {onDelete, onUpdate}
+    return {onDelete, onUpdate, onUpdateData}
 }
 
 export default useProducts;

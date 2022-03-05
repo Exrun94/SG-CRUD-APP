@@ -7,10 +7,12 @@ import ProductsComponent from "./ProductsComponent"
 import Search  from '../components/search/Search';
 import Button from "../components/buttons/Button";
 import MotionFrame from "../components/form/MotionFrame";
+import UpdateForm from "../components/form/UpdateForm";
+import CreateForm from "../components/form/CreateForm";
 
 
 const Layout = () => {
-    const { isToggled } = useContext(FrameMotionContext)
+    const { isCreate, isUpdate } = useContext(FrameMotionContext)
   return (
     <>
         <GridContainer>
@@ -20,7 +22,8 @@ const Layout = () => {
                 <Search />
                 <Button />
             </UtilsContainer>
-            {isToggled && <MotionFrame />}
+            {isCreate && <MotionFrame children={<CreateForm />}/>}
+            {isUpdate && <MotionFrame children={<UpdateForm />}/>}
             <ProductsComponent />
         </GridContainer>
     </>
