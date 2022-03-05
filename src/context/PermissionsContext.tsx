@@ -12,13 +12,13 @@ interface ContextType {
     setOnDeletePermission: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-interface ProductProvider {
+interface PermissionProvider {
     children: React.ReactNode;
 };
   
 export const PermissionsContext = createContext({} as ContextType);
 
-export const PermissionsContextProvider = ({ children }: ProductProvider) => {
+export const PermissionsContextProvider = ({ children }: PermissionProvider) => {
     const [onCreatePermission, setOnCreatePermission] = useState(false);
     const [onReadPermission, setOnReadPermission] = useState(false);
     const [onUpdatePermission, setOnUpdatePermission] = useState(false);

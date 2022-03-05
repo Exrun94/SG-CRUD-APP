@@ -8,13 +8,13 @@ export default function App() {
 
   return (
     <>
-      <PermissionsContextProvider>
       <ProductContextProvider>
-      <FrameMotionContextProvider>
-        <Layout />
-      </FrameMotionContextProvider>
+        <FrameMotionContextProvider>
+          <PermissionsContextProvider>
+            <Layout />
+          </PermissionsContextProvider>
+        </FrameMotionContextProvider>
       </ProductContextProvider>
-      </PermissionsContextProvider>
-    </>
+  </>
   );
 }

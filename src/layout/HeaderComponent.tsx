@@ -1,10 +1,11 @@
 import React from 'react';
 import Logo from '../components/logo/Logo';
 
-const HeaderComponent = () => {
+const HeaderComponent: React.FC = () => {
+
   return (
     <>
-        <Logo />
+        <Logo/>
     </>
   )
 }

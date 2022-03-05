@@ -1,10 +1,17 @@
 import React, { useContext } from 'react'
 import { Header, Span } from './Logo.styles'
 import { PermissionsContext } from '../../context/PermissionsContext'
+import usePermissions from '../../hooks/usePermissions'
+
 
 const Logo = () => {
-  const { setOnCreatePermission, setOnReadPermission, setOnUpdatePermission, setOnDeletePermission, onCreatePermission, onReadPermission, onUpdatePermission, onDeletePermission } = useContext(PermissionsContext);
+  const { onCreatePermission, onUpdatePermission, onDeletePermission, onReadPermission } = useContext(PermissionsContext);
   const logo = ['C', 'R', 'U', 'D'];
+
+
+  const { createPermission, readPermission, updatePermission, deletePermission,  } = usePermissions()
+
+  console.log('readLogo: ', onReadPermission)
 
   //toggles 'active' class on clicked letter
   const toggle = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
@@ -14,16 +21,16 @@ const Logo = () => {
 
       switch(ch) {
         case 'C':
-          setOnCreatePermission(!onCreatePermission);
+          createPermission(!onCreatePermission);
           break;
         case 'R':
-          setOnReadPermission(!onReadPermission);
+          readPermission(!onReadPermission);
           break;
         case 'U': 
-          setOnUpdatePermission(!onUpdatePermission);
+          updatePermission(!onUpdatePermission);
           break;
         case 'D': 
-          setOnDeletePermission(!onDeletePermission);
+          deletePermission(!onDeletePermission);
           break;
     }
   }
@@ -33,11 +40,15 @@ const Logo = () => {
     <>  
       <Header>
         {logo.map((ch: string, index: number) => {
+          console.log(onCreatePermission, onUpdatePermission, onDeletePermission, onReadPermission);
+          if(index === 0 && onCreatePermission) return <Span key={index} animationDelay={ (0.5 + index / 10) + "s" } onClick={toggle} className="active">{ch}</Span>
+          if(index === 1 && onReadPermission) return <Span key={index} animationDelay={ (0.5 + index / 10) + "s" } onClick={toggle} className="active">{ch}</Span>
+          if(index === 2 && onUpdatePermission) return <Span key={index} animationDelay={ (0.5 + index / 10) + "s" } onClick={toggle} className="active">{ch}</Span>
+          if(index === 3 && onDeletePermission) return <Span key={index} animationDelay={ (0.5 + index / 10) + "s" } onClick={toggle} className="active">{ch}</Span>
             return <Span
                 key={index}
                 animationDelay={ (0.5 + index / 10) + "s" }
                 onClick={(e) => toggle(e)}
-
                 >{ch}</Span>
         })}
       </Header>
