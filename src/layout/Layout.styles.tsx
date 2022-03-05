@@ -23,4 +23,10 @@ export const UtilsContainer = styled.div`
     align-items: center;
     padding-bottom: 5em;
     border-bottom: 1px solid var(--primary-dark-400);
-`;;
+`;
+
+export const InvalidPermissions = styled.h1`
+    color: var(--primary-dark-400);
+    font-size: 3em;
+    margin-top: 2em;
+`;

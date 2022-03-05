@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { GridContainer, UtilsContainer } from "./Layout.styles"
+import { GridContainer, UtilsContainer, InvalidPermissions } from "./Layout.styles"
 import { FrameMotionContext } from "../context/FrameMotionContext";
 import { PermissionsContext } from '../context/PermissionsContext';
 import HeaderComponent from "./HeaderComponent"
@@ -12,11 +12,9 @@ import UpdateForm from "../components/form/UpdateForm";
 import CreateForm from "../components/form/CreateForm";
 import usePermissions from "../hooks/usePermissions";
 
-
-
 const Layout = () => {
-    const { isCreate, isUpdate } = useContext(FrameMotionContext)
     const { setOnCreatePermission, setOnReadPermission, setOnUpdatePermission, setOnDeletePermission, onReadPermission } = useContext(PermissionsContext);
+    const { isCreate, isUpdate } = useContext(FrameMotionContext)
     const { getPermissions } = usePermissions();
 
     useEffect(() => {
@@ -44,7 +42,7 @@ const Layout = () => {
             </UtilsContainer>
             {isCreate && <MotionFrame children={<CreateForm />}/>}
             {isUpdate && <MotionFrame children={<UpdateForm />}/>}
-            {onReadPermission && <ProductsComponent/>}
+            {onReadPermission ? <ProductsComponent/> : <InvalidPermissions>You don't have permissions to view products!</InvalidPermissions>}
         </GridContainer>
     </>
   )

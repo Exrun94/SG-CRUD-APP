@@ -6,12 +6,11 @@ import usePermissions from '../../hooks/usePermissions'
 
 const Logo = () => {
   const { onCreatePermission, onUpdatePermission, onDeletePermission, onReadPermission } = useContext(PermissionsContext);
+  const { createPermission, readPermission, updatePermission, deletePermission,  } = usePermissions()
   const logo = ['C', 'R', 'U', 'D'];
 
 
-  const { createPermission, readPermission, updatePermission, deletePermission,  } = usePermissions()
 
-  console.log('readLogo: ', onReadPermission)
 
   //toggles 'active' class on clicked letter
   const toggle = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
@@ -40,7 +39,6 @@ const Logo = () => {
     <>  
       <Header>
         {logo.map((ch: string, index: number) => {
-          console.log(onCreatePermission, onUpdatePermission, onDeletePermission, onReadPermission);
           if(index === 0 && onCreatePermission) return <Span key={index} animationDelay={ (0.5 + index / 10) + "s" } onClick={toggle} className="active">{ch}</Span>
           if(index === 1 && onReadPermission) return <Span key={index} animationDelay={ (0.5 + index / 10) + "s" } onClick={toggle} className="active">{ch}</Span>
           if(index === 2 && onUpdatePermission) return <Span key={index} animationDelay={ (0.5 + index / 10) + "s" } onClick={toggle} className="active">{ch}</Span>
