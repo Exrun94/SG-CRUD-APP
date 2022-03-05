@@ -4,11 +4,11 @@ import { FrameMotionContext } from '../../context/FrameMotionContext'
 
 
 const Button = () => {
-  const { isToggled, setIsToggled } = useContext(FrameMotionContext)
+  const { setIsCreate } = useContext(FrameMotionContext)
 
   return (
     <>
-        <PrimaryButton onClick={() => setIsToggled(!isToggled)}>Add Product</PrimaryButton>
+        <PrimaryButton onClick={() => setIsCreate(true)}>Add Product</PrimaryButton>
     </>
   )
 }
