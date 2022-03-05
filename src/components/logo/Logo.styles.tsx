@@ -5,6 +5,8 @@ interface styledProps {
 }
 
 export const Header = styled.header`
+    display: flex;
+    gap: 2.1em;
     grid-area: head;
 `;
 
@@ -17,6 +19,16 @@ export const Span = styled('span')`
     bottom: -1em;
     opacity: 0;
     animation-delay: ${(props: styledProps) => props.animationDelay};
+
+    &.active {
+            color: var(--accent-dark-400) !important;
+            font-size: 4.5em;
+        }
+
+    &:hover {
+        cursor: pointer;
+    }
+
 
     @keyframes wave {
         0% {
@@ -33,7 +45,7 @@ export const Span = styled('span')`
         100% {
             bottom: 0;
             opacity: 1;
-            color: var(--accent-dark-400);
+            color: white;
         }
 }
 `
