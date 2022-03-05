@@ -33,14 +33,9 @@ const ProductsList = () => {
   return (
     <>
         <Container>
-        {productsList.filter((product => {
-             if(onSearch == "") {
-                return product
-              } else if (product.productName.toLowerCase().includes(onSearch.toLowerCase())) {
-                return product
-              }
-        })).map((product) => {
-                        return (
+        {productsList
+            .filter((product) => {return product.productName.toLocaleLowerCase().includes(onSearch.toLocaleLowerCase())})
+            .map((product) => { return (
             <Card key={product.id}>
                 <ImgContainer>
                     <Image src={product.imgSrc} />
