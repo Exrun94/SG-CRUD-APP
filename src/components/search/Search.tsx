@@ -5,18 +5,18 @@ import IProduct from '../../interfaces/Product';
 
 
 const Search = () => {
-    const { productsList, setProductsList } = useContext(ProductContext);
+    const { setOnSearch } = useContext(ProductContext);
 
-    const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const searchValue = e.target.value;
-        const filteredProducts = productsList.filter((product: IProduct) => {
-            return product.productName.toLowerCase().includes(searchValue.toLowerCase())
-        })
-        setProductsList(filteredProducts)
-    }
+    // const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const searchValue = e.target.value;
+    //     const filteredProducts = productsList.filter((product: IProduct) => {
+    //         return product.productName.toLowerCase().includes(searchValue.toLowerCase())
+    //     })
+    //     setProductsList(filteredProducts)
+    // }
   return (
     <>
-        <SearchInput onChange={(e) => onSearch(e)} placeholder="Search..." />
+        <SearchInput onChange={(e) => setOnSearch(e.target.value)} placeholder="Search..." />
     </>
   )
 }
