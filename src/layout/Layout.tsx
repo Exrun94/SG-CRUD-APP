@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { GridContainer, UtilsContainer } from "./Layout.styles"
 import { FrameMotionContext } from "../context/FrameMotionContext";
+import { PermissionsContext } from '../context/PermissionsContext';
 import HeaderComponent from "./HeaderComponent"
 import SidebarComponent from "./SidebarComponent"
 import ProductsComponent from "./ProductsComponent"
@@ -13,6 +14,7 @@ import CreateForm from "../components/form/CreateForm";
 
 const Layout = () => {
     const { isCreate, isUpdate } = useContext(FrameMotionContext)
+    const { onReadPermission } = useContext(PermissionsContext);
   return (
     <>
         <GridContainer>
@@ -24,7 +26,7 @@ const Layout = () => {
             </UtilsContainer>
             {isCreate && <MotionFrame children={<CreateForm />}/>}
             {isUpdate && <MotionFrame children={<UpdateForm />}/>}
-            <ProductsComponent />
+            {onReadPermission && <ProductsComponent/>}
         </GridContainer>
     </>
   )
