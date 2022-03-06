@@ -1,7 +1,7 @@
 import React, { FormEvent, useContext, useEffect, useState } from 'react'
 import { FrameMotionContext } from '../../context/FrameMotionContext';
 import { Formik, FormikHelpers, FormikProps } from 'formik';
-import { StyledField, Unsplash, Img,  StyledForm, StyledLabel, ButtonWrapper, Button, InputWrapper, Error, Heading } from './Form.styles'
+import { StyledField, Unsplash, Img,  StyledForm, StyledLabel, ButtonWrapper, Button, InputWrapper, Error, } from './Form.styles'
 import * as Yup from 'yup';
 import {db} from '../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
@@ -33,7 +33,7 @@ const AddForm = () => {
 
     const saveProduct = async (data: IProduct) => {
         data.imgSrc = chosenImage;
-        console.log(data.imgSrc);
+        data.productName = data.productName.charAt(0).toUpperCase() + data.productName.slice(1);
         await addDoc(productsCollectionRef, data);
         setOnProductChange(!onProductChange);
     }
@@ -116,8 +116,6 @@ const AddForm = () => {
                         {errors.currency && touched.currency ? ( <Error visible={true}>*{errors.currency}</Error>) : <Error visible={false}/>}
                     </InputWrapper>
                     
-                    {input.length !== 0 && <Heading>Choose image 🚀</Heading>}
-
                     <Unsplash>
                         {images.map((img: string, i: number) => (
                             <Img 

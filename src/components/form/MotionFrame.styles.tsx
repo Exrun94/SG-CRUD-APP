@@ -26,7 +26,7 @@ export const MotionMenu = styled(motion.div)`
   min-width: 5em;
   min-height: 10em;
   width: 50em;
-  height: 40em;
+  height: 45em;
   /* background-color: var(--primary-dark-700); */
   background: rgba(41, 41, 41, 0.2);
   backdrop-filter: blur(30px);
