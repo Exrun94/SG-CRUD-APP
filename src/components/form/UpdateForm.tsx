@@ -19,7 +19,6 @@ const UpdateForm = () => {
         price: updateData.price,
         currency: updateData.currency,
         date: Date.now(),
-        favorite: false,
         imgSrc: '',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, dignissimos voluptates laudantium exercitationem voluptatem debitis delectus corporis beatae ut'
         

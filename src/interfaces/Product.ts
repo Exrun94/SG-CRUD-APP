@@ -4,7 +4,6 @@ export default interface IProduct {
     price: number;
     currency: string;
     date: number;
-    favorite: boolean;
     imgSrc: string;
     description: string;
 }
