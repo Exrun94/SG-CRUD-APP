@@ -30,6 +30,9 @@ export const UtilsContainer = styled.div`
 
 export const InvalidPermissions = styled.h1`
     color: var(--primary-dark-400);
-    font-size: 3em;
+    font-size: 2em;
     margin-top: 2em;
+    overflow-wrap: break-word;
+    text-align: center;
+    margin-right: 10em;
 `;

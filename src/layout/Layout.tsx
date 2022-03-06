@@ -42,7 +42,7 @@ const Layout = () => {
             </UtilsContainer>
             {isCreate && <MotionFrame children={<CreateForm />}/>}
             {isUpdate && <MotionFrame children={<UpdateForm />}/>}
-            {onReadPermission ? <ProductsComponent/> : <InvalidPermissions>You don't have permissions to view products!</InvalidPermissions>}
+            {onReadPermission ? <ProductsComponent/> : <InvalidPermissions>You don't have permissions to view products! <br></br>Toggle ON/OFF permissions by clicking corresponding letter in the CRUD logo</InvalidPermissions>}
         </GridContainer>
     </>
   )
