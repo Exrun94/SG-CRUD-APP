@@ -14,9 +14,6 @@ const Sidebar = () => {
     <>
       <SidebarContainer>
         <IconContainer>
-          <Icon icon={IconFavorite}/>
-        </IconContainer>
-        <IconContainer>
           <Icon icon={SortByAscName} onClick={sortByName}/>
         </IconContainer>
         <IconContainer>
