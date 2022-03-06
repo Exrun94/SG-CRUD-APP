@@ -62,7 +62,7 @@ const ProductsList = () => {
                 </MainData>
                     <DescriptionContainer>
                         <DescriptionHeader>Description</DescriptionHeader>
-                        <DateAdded>Date listed: <span>{moment(product.date).format('DD/MM/YYYY HH:mm')}</span></DateAdded>
+                        <DateAdded>Date: <span>{moment(product.date).format('DD/MM/YYYY HH:mm')}</span></DateAdded>
                         <Description>{product.description}</Description>
                         <IconsWrapper>
                             {onUpdatePermission && <IconEdit onClick={() => onUpdate(product.id, product.productName, product.price, product.currency)} />}

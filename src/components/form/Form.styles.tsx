@@ -4,6 +4,8 @@ import { Field, Form } from 'formik';
 export const StyledForm = styled(Form)`
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-top: 4em;
 `;
 
@@ -99,4 +101,18 @@ export const Img = styled.img`
     cursor: pointer;
     transform: scale(1.1);
   }
+
+  &.active {
+    transform: scale(1.1);
+    border: 2px solid var(--accent-dark-400);
+    box-shadow: 0 0 10px var(--accent-dark-400);
+
+  }
+`;
+
+export const Heading = styled.h1`
+  font-size: 2em;
+  font-weight: 400;
+  color: var(--primary-dark-200);
+  margin-bottom: .5em;
 `;

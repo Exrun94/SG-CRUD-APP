@@ -14,7 +14,7 @@ const MotionFrame: React.FC<React.ReactNode> = ({children}) => {
                     animate="visible"
                     exit="exit"
                     >
-                    <Heading>Enter Product</Heading>
+                    <Heading>Enter Product 🔥</Heading>
                     {children}
 
                 </MotionMenu>

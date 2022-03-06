@@ -1,7 +1,7 @@
 import React, { FormEvent, useContext, useEffect, useState } from 'react'
 import { FrameMotionContext } from '../../context/FrameMotionContext';
 import { Formik, FormikHelpers, FormikProps } from 'formik';
-import { StyledField, Unsplash, Img,  StyledForm, StyledLabel, ButtonWrapper, Button, InputWrapper, Error } from './Form.styles'
+import { StyledField, Unsplash, Img,  StyledForm, StyledLabel, ButtonWrapper, Button, InputWrapper, Error, Heading } from './Form.styles'
 import * as Yup from 'yup';
 import {db} from '../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
@@ -13,8 +13,9 @@ const api = createApi({ accessKey: 'viKl522r1TKUcjWViY0-y6Sp0788bYjYAIHkvJgnVxs'
 
 const AddForm = () => {
     const [images, setImages] = useState<string[]>([]);
-    const [chosenImage, setChosenImage] = useState<string>('');
-    const [input, setInput] = useState<string>('test');
+    const [chosenImage, setChosenImage] = useState('https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930');
+    const [input, setInput] = useState('');
+    const [imgIndex, setImgIndex] = useState<null | number>(null);
 
     const { setIsCreate } = useContext(FrameMotionContext)
     const { onProductChange, setOnProductChange } = useContext(ProductContext)
@@ -26,12 +27,13 @@ const AddForm = () => {
         price: 0,
         currency: '',
         date: Date.now(),
-        imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg',
+        imgSrc: '',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, dignissimos voluptates laudantium exercitationem voluptatem debitis delectus corporis beatae ut'
     };
 
     const saveProduct = async (data: IProduct) => {
         data.imgSrc = chosenImage;
+        console.log(data.imgSrc);
         await addDoc(productsCollectionRef, data);
         setOnProductChange(!onProductChange);
     }
@@ -60,10 +62,12 @@ const AddForm = () => {
 
     };
 
-    const handleImage = (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+    const handleImage = (event: React.MouseEvent<HTMLImageElement, MouseEvent>, i: number) => {
         const target = event.target as HTMLImageElement;
+        target.classList.toggle('active');
         setChosenImage(target.src);
-        console.log(chosenImage);
+        setImgIndex(i);
+
     }
 
     const ValidationSchema = Yup.object().shape({
@@ -111,10 +115,16 @@ const AddForm = () => {
                         <StyledField name="currency" type="text" placeholder="Example: 'USD'" required />
                         {errors.currency && touched.currency ? ( <Error visible={true}>*{errors.currency}</Error>) : <Error visible={false}/>}
                     </InputWrapper>
+                    
+                    {input.length !== 0 && <Heading>Choose image 🚀</Heading>}
 
                     <Unsplash>
-                        {images.map((img: string) => (
-                            <Img key={img} src={img} onClick={(e) => {handleImage(e)}}/>
+                        {images.map((img: string, i: number) => (
+                            <Img 
+                            key={img} 
+                            src={img} 
+                            className={imgIndex === i ? 'active' : ''}
+                            onClick={(e) => {handleImage(e, i)}}/>
                         ))}
                     </Unsplash>
 

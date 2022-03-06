@@ -8,7 +8,7 @@ export const Container = styled.div`
   position: absolute;
   height: 100%;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
 `;
 
 export const Wrapper = styled.div`
@@ -26,19 +26,29 @@ export const MotionMenu = styled(motion.div)`
   min-width: 5em;
   min-height: 10em;
   width: 50em;
-  height: 100%;
+  height: 40em;
+  /* background-color: var(--primary-dark-700); */
   background: rgba(41, 41, 41, 0.2);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 25px;
   border-radius: .8em;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-top: 2em;
+  }
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
+
 `;
 
 export const Heading = styled.h1`
   font-size: 2em;
   font-weight: 400;
   color: var(--primary-dark-200);
-  margin-top: 2em;
 `;
 

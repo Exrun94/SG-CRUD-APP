@@ -23,13 +23,13 @@ export const Container = styled.div`
     grid-row-gap: 2em;
     grid-template-columns: repeat(auto-fill, 23em);
     padding-top: 5em;
+
 `;
 
 export const DescriptionContainer = styled.div`
     position: relative;
     top: -7em;
     text-align: center;
-    visibility: hidden;
     opacity: 0;
     transition: 0.3s ease-in-out;
 `;
@@ -73,6 +73,12 @@ export const Card = styled.div`
     animation: ${cardAnimation} 1s ease-out;
     animation-fill-mode: backwards;
 
+    &:before {
+        background: rgba(41, 41, 41, 0.2);
+    backdrop-filter: blur(30px);
+   -webkit-backdrop-filter: blur(30px);
+    }
+
 
     &:hover {
         height: 18em;
@@ -100,6 +106,7 @@ export const ImgContainer = styled.div`
     height: 16em;
     top: -40%;
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    filter: (0);
     
 `;
 

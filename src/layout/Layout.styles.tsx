@@ -18,12 +18,14 @@ export const GridContainer = styled.div`
 `;
 
 export const UtilsContainer = styled.div`
+    
     display: flex;
     width: 80%;
     grid-area: search;
     align-items: center;
     padding-bottom: 5em;
     border-bottom: 1px solid var(--primary-dark-400);
+
 `;
 
 export const InvalidPermissions = styled.h1`
