@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import iconFavorite from '../../images/favorite.svg';
-import iconFavoriteFill from '../../images/favorite-filled.svg';
 import iconEdit from '../../images/edit.svg';
 import iconDelete from '../../images/delete.svg';
 
@@ -106,19 +104,6 @@ export const IconsWrapper = styled.div`
     gap: 1em;
 `;
 
-export const IconFavorite = styled.img<{isFavorite: boolean}>`
-    width: 20px;
-    height: 20px;
-    content: url(${(props) => props.isFavorite ? iconFavoriteFill : iconFavorite});
-    
-
-    &:hover {
-        cursor: pointer;
-        content: url(${iconFavoriteFill});
-        fill: yellow
-    }
-
-`;
 
 export const IconEdit = styled.img`
     width: 20px;

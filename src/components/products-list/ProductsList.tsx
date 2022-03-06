@@ -4,7 +4,7 @@ import IProduct from '../../interfaces/Product'
 import { db } from '../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { ProductContext } from '../../context/ProductContext';
-import { Container, Card, Image, ImgContainer, MainInfo, ProductName, ProductPrice, DescriptionContainer, Description, IconsWrapper, IconFavorite, IconEdit, IconDelete  } from './ProductsList.styles'
+import { Container, Card, Image, ImgContainer, MainInfo, ProductName, ProductPrice, DescriptionContainer, Description, IconsWrapper, IconEdit, IconDelete  } from './ProductsList.styles'
 import { PermissionsContext } from '../../context/PermissionsContext';
 
 
@@ -46,7 +46,6 @@ const ProductsList = () => {
                     </MainInfo>
 
                     <IconsWrapper>
-                        <IconFavorite onClick={() => onFavorite(product.id, product.favorite)} isFavorite={product.favorite}/>
                         {onUpdatePermission && <IconEdit onClick={() => onUpdate(product.id, product.productName, product.price, product.currency)} />}
                         {onDeletePermission && <IconDelete onClick={() => onDelete(product.id)}/>}
                     </IconsWrapper>
