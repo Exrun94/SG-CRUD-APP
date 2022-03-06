@@ -1,6 +1,21 @@
-import styled from 'styled-components';
+import styled, {keyframes, css} from 'styled-components';
 import iconEdit from '../../images/edit.svg';
 import iconDelete from '../../images/delete.svg';
+
+// a loop to cycle each nthChild in Card component and increase animation delay for each next card
+function nthChild() {
+    let styles = '';
+    for (let i=0; i< 50; i++) {
+        styles += `
+            &:nth-child(${i + 1}) {
+                animation-delay: ${`${100 * i}ms`};
+            }
+        `
+    }
+    return css`${styles}`;
+}
+
+
 
 export const Container = styled.div`
     position: relative;
@@ -12,12 +27,35 @@ export const Container = styled.div`
 
 export const DescriptionContainer = styled.div`
     position: relative;
-    top: -8em;
+    top: -7em;
     text-align: center;
     visibility: hidden;
     opacity: 0;
     transition: 0.3s ease-in-out;
 `;
+
+export const MainData = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 8em;
+
+`;
+
+const cardAnimation = keyframes`
+    0% {
+        opacity: 0;
+        transform: scale(.3);
+        filter: hue-rotate(180deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: hue-rotate(0deg);
+    }
+`
 
 export const Card = styled.div`
     position: relative;
@@ -32,9 +70,12 @@ export const Card = styled.div`
     box-shadow: 0 5px 20px rgba(0,0,0,0.5);
     transition: 0.3s ease-in-out;
     border-radius: 1em;
+    animation: ${cardAnimation} 1s ease-out;
+    animation-fill-mode: backwards;
+
 
     &:hover {
-        height: 20em;
+        height: 18em;
         
         ${DescriptionContainer} {
             margin-top: 2em;
@@ -42,12 +83,20 @@ export const Card = styled.div`
             opacity: 1;
             transition-delay: 0.2s;
         }
+
+        ${MainData} {
+            display: none;
+            transition-delay: 0.2s;
+        }
     }
+
+    ${nthChild()}
+
 `;
 
 export const ImgContainer = styled.div`
     position: relative;
-    width: 16em;
+    width: 17em;
     height: 16em;
     top: -40%;
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
@@ -55,7 +104,8 @@ export const ImgContainer = styled.div`
 `;
 
 export const Image = styled.img`
-    max-width: 100%;
+    width: 17em;
+    height: 10em;
     border-radius: 1em;
 `;
 
@@ -68,14 +118,23 @@ export const MainInfo = styled.div`
 
 `;
 
+export const DescriptionHeader = styled.h3`
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-dark-200);
+    margin-bottom: .5em;
+    transition: 0.5s;
+    align-self: flex-start;
+
+`;
+
 export const ProductPrice = styled.h3`
     font-size: 1.2em;
     font-weight: bold;
     color: white;
     align-self: flex-end;
     background-color: var(--accent-dark-400);
-    width: 100%;
-    padding: .5em 0;
+    padding: .5em 1.5em;
     margin-bottom: .5em;
     border-radius: .7em;
 
@@ -102,6 +161,7 @@ export const IconsWrapper = styled.div`
     flex-direction: row;
     justify-content: center;
     gap: 1em;
+    margin-top: 1em;
 `;
 
 
@@ -126,5 +186,15 @@ export const IconDelete = styled.img`
     &:hover {
         cursor: pointer;
         transform: rotate(90deg);
+    }
+`;
+
+export const DateAdded = styled.p`
+    font-size: .7em;
+    color: white;
+    margin: .5em 0 .5em 0;
+
+    span {
+        color: var(--accent-dark-400)
     }
 `;

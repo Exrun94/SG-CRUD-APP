@@ -82,3 +82,21 @@ export const Button = styled.button<{fill: string}>`
     text-shadow: 1px 1px 2px #6400e7;
   }
 `;
+
+export const Unsplash = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8em, 1fr));
+  grid-gap: 1em;
+`;
+
+export const Img = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: .8em;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+`;

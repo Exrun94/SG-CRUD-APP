@@ -4,9 +4,10 @@ import IProduct from '../../interfaces/Product'
 import { db } from '../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { ProductContext } from '../../context/ProductContext';
-import { Container, Card, Image, ImgContainer, MainInfo, ProductName, ProductPrice, DescriptionContainer, Description, IconsWrapper, IconEdit, IconDelete  } from './ProductsList.styles'
+import { Container, Card, Image, ImgContainer, MainInfo, ProductName, ProductPrice, DescriptionContainer, Description, IconsWrapper, IconEdit, IconDelete, MainData, DescriptionHeader, DateAdded  } from './ProductsList.styles'
 import { PermissionsContext } from '../../context/PermissionsContext';
 import { SortContext } from '../../context/SortContext';
+import moment from 'moment';
 
 
 const ProductsList = () => {
@@ -53,18 +54,20 @@ const ProductsList = () => {
                 <ImgContainer>
                     <Image src={product.imgSrc} />
                 </ImgContainer>
-                    <DescriptionContainer>
+                <MainData>
                     <ProductName>{product.productName}</ProductName>
-                    <Description>{product.description}</Description>
                     <MainInfo>
                         <ProductPrice>{product.price.toFixed(2)} <sup>{product.currency.toUpperCase()}</sup></ProductPrice>
                     </MainInfo>
-
-                    <IconsWrapper>
-                        {onUpdatePermission && <IconEdit onClick={() => onUpdate(product.id, product.productName, product.price, product.currency)} />}
-                        {onDeletePermission && <IconDelete onClick={() => onDelete(product.id)}/>}
-                    </IconsWrapper>
-
+                </MainData>
+                    <DescriptionContainer>
+                        <DescriptionHeader>Description</DescriptionHeader>
+                        <DateAdded>Date listed: <span>{moment(product.date).format('DD/MM/YYYY HH:mm')}</span></DateAdded>
+                        <Description>{product.description}</Description>
+                        <IconsWrapper>
+                            {onUpdatePermission && <IconEdit onClick={() => onUpdate(product.id, product.productName, product.price, product.currency)} />}
+                            {onDeletePermission && <IconDelete onClick={() => onDelete(product.id)}/>}
+                        </IconsWrapper>
                 </DescriptionContainer>
    
             </Card>

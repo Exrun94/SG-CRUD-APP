@@ -13,6 +13,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  --card-animation-delay: 100ms;
+
   --primary: #6127bc;
   --primary-light: #b894e4;
   --primary-dark: #3d1f70;

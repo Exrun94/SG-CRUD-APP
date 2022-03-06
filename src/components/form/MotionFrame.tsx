@@ -1,8 +1,9 @@
 import React from 'react'
 import dropIn from './MotionFrame.config'
-import { Container, Wrapper, MotionMenu, Heading  } from './MotionFrame.styles';
+import { Container, Wrapper, MotionMenu, Heading } from './MotionFrame.styles';
 
 const MotionFrame: React.FC<React.ReactNode> = ({children}) => {
+
   return (
     <>
         <Container>
@@ -15,6 +16,7 @@ const MotionFrame: React.FC<React.ReactNode> = ({children}) => {
                     >
                     <Heading>Enter Product</Heading>
                     {children}
+
                 </MotionMenu>
             </Wrapper>
         </Container>

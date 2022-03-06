@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
+import React, { FormEvent, useContext, useEffect, useState } from 'react'
 import { FrameMotionContext } from '../../context/FrameMotionContext';
 import { Formik, FormikHelpers, FormikProps } from 'formik';
-import { StyledField, StyledForm, StyledLabel, ButtonWrapper, Button, InputWrapper, Error } from './Form.styles'
+import { StyledField, Unsplash, Img,  StyledForm, StyledLabel, ButtonWrapper, Button, InputWrapper, Error } from './Form.styles'
 import * as Yup from 'yup';
 import {db} from '../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
@@ -12,6 +12,10 @@ import { createApi } from "unsplash-js";
 const api = createApi({ accessKey: 'viKl522r1TKUcjWViY0-y6Sp0788bYjYAIHkvJgnVxs' });
 
 const AddForm = () => {
+    const [images, setImages] = useState<string[]>([]);
+    const [chosenImage, setChosenImage] = useState<string>('');
+    const [input, setInput] = useState<string>('test');
+
     const { setIsCreate } = useContext(FrameMotionContext)
     const { onProductChange, setOnProductChange } = useContext(ProductContext)
     const productsCollectionRef = collection(db, 'Products');
@@ -22,21 +26,46 @@ const AddForm = () => {
         price: 0,
         currency: '',
         date: Date.now(),
-        imgSrc: '',
+        imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, dignissimos voluptates laudantium exercitationem voluptatem debitis delectus corporis beatae ut'
     };
 
     const saveProduct = async (data: IProduct) => {
-        data.imgSrc = await useUnsplash(data.productName);
+        data.imgSrc = chosenImage;
         await addDoc(productsCollectionRef, data);
         setOnProductChange(!onProductChange);
     }
 
     const useUnsplash = async (imgSrc: string): Promise<any> => {
         const result = await api.search.getPhotos({query: imgSrc, orientation: 'landscape'})
-        return result?.response?.results[0].urls.regular
+        return result?.response?.results
     }
-    
+
+    useEffect(() => {
+        const fetchImages = async () => {
+          const unsplash = await useUnsplash(input);
+          console.log(unsplash);
+          setImages(unsplash.map((img: any) => img.urls.regular))
+        }
+        fetchImages();
+      }, [input])
+
+      const handleOnChange = (event: FormEvent) => {
+            const target = event.target as HTMLInputElement;
+          if(target.className.includes('target')) {
+              setTimeout(() => {
+                    setInput(target.value);
+              }, 2000)
+          }
+
+    };
+
+    const handleImage = (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+        const target = event.target as HTMLImageElement;
+        setChosenImage(target.src);
+        console.log(chosenImage);
+    }
+
     const ValidationSchema = Yup.object().shape({
         productName: Yup.string()
             .max(25, 'Too Long!')
@@ -64,10 +93,10 @@ const AddForm = () => {
         >
 
             {({ isSubmitting, errors, touched }: FormikProps<IProduct>) => (
-                <StyledForm>
+                <StyledForm onChange={handleOnChange}>
                     <InputWrapper>
                         <StyledLabel htmlFor="productName"></StyledLabel>
-                        <StyledField name="productName" type="text" required placeholder="Enter Product"/>
+                        <StyledField name="productName" type="text" required placeholder="Enter Product" className="target"/>
                         {errors.productName && touched.productName ? ( <Error visible={true}>*{errors.productName}</Error>) : <Error visible={false}/>}
                     </InputWrapper>
 
@@ -82,6 +111,12 @@ const AddForm = () => {
                         <StyledField name="currency" type="text" placeholder="Example: 'USD'" required />
                         {errors.currency && touched.currency ? ( <Error visible={true}>*{errors.currency}</Error>) : <Error visible={false}/>}
                     </InputWrapper>
+
+                    <Unsplash>
+                        {images.map((img: string) => (
+                            <Img key={img} src={img} onClick={(e) => {handleImage(e)}}/>
+                        ))}
+                    </Unsplash>
 
                     <ButtonWrapper>
                         <Button 
