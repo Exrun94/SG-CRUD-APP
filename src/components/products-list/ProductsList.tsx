@@ -9,23 +9,20 @@ import { PermissionsContext } from '../../context/PermissionsContext';
 
 
 const ProductsList = () => {
-    const { onProductChange, productsList, setProductsList, onSearch } = useContext(ProductContext);
+    const { onProductChange, productsList, onSearch, setProductsList } = useContext(ProductContext);
     const { onUpdatePermission, onDeletePermission } = useContext(PermissionsContext);
     const {onDelete, onUpdate, onFavorite} = useProducts();
-
     const productsCollectionRef = collection(db, 'Products');
 
     useEffect(() => {
-
         const getProducts = async () => {
             const data = await getDocs(productsCollectionRef);
-            const result: any = data.docs.map((doc) => ({...doc.data(), id: doc.id}));
-            const sorted = result.sort((a: IProduct, b: IProduct) => {
+            const result = data.docs.map((doc) => ({...doc.data(), id: doc.id}) as IProduct);
+            const sorted = result.sort((a, b) => {
                 return a.date - b.date
             })
-            setProductsList(sorted)
+            setProductsList(sorted);
         }
-
         getProducts();
     }, [onProductChange])
 

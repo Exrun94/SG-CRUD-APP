@@ -29,7 +29,6 @@ export const Span = styled('span')`
         cursor: pointer;
     }
 
-
     @keyframes wave {
         0% {
             bottom: -0.2em;

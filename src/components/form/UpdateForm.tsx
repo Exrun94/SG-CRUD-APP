@@ -9,7 +9,6 @@ import useProducts from '../../hooks/useProducts';
 
 const api = createApi({ accessKey: 'viKl522r1TKUcjWViY0-y6Sp0788bYjYAIHkvJgnVxs' });
 
-
 const UpdateForm = () => {
     const { setIsUpdate, updateData } = useContext(FrameMotionContext)
     const { onUpdateData } = useProducts();
@@ -25,7 +24,6 @@ const UpdateForm = () => {
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, dignissimos voluptates laudantium exercitationem voluptatem debitis delectus corporis beatae ut'
         
     };
-
 
     const ValidationSchema = Yup.object().shape({
         productName: Yup.string()
@@ -51,7 +49,6 @@ const UpdateForm = () => {
                         setIsUpdate(false);
                         
                     }, 400)
-
             }}
         >
 

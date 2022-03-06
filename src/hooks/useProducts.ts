@@ -17,6 +17,7 @@ const useProducts = () => {
         } catch (err) {
             console.log(err)
         }
+
     }
 
     const onUpdate = (id: string, productName: string, price: number, currency: string) => {

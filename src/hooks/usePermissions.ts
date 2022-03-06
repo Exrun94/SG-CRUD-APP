@@ -2,13 +2,7 @@ import { useContext } from 'react';
 import { db } from '../firebase';
 import { updateDoc, doc, getDoc, } from 'firebase/firestore';
 import { PermissionsContext } from '../context/PermissionsContext';
-
-interface IPermissions {
-    onCreate: boolean
-    onRead: boolean
-    onUpdate: boolean
-    onDelete: boolean
-}
+import IPermissions from '../interfaces/Permissions'
 
 const usePermissions = () => {
     const {setOnCreatePermission, setOnReadPermission, setOnUpdatePermission, setOnDeletePermission} = useContext(PermissionsContext)
@@ -69,8 +63,6 @@ const usePermissions = () => {
         }
     }
     
-
-
     return { 
         getPermissions, 
         createPermission, 

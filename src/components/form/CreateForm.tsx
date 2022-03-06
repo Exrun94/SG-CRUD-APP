@@ -11,11 +11,9 @@ import { createApi } from "unsplash-js";
 
 const api = createApi({ accessKey: 'viKl522r1TKUcjWViY0-y6Sp0788bYjYAIHkvJgnVxs' });
 
-
 const AddForm = () => {
     const { setIsCreate } = useContext(FrameMotionContext)
     const { onProductChange, setOnProductChange } = useContext(ProductContext)
-
     const productsCollectionRef = collection(db, 'Products');
 
     const initialValues: IProduct = {
@@ -27,14 +25,12 @@ const AddForm = () => {
         favorite: false,
         imgSrc: '',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, dignissimos voluptates laudantium exercitationem voluptatem debitis delectus corporis beatae ut'
-        
     };
 
     const saveProduct = async (data: IProduct) => {
         data.imgSrc = await useUnsplash(data.productName);
         await addDoc(productsCollectionRef, data);
         setOnProductChange(!onProductChange);
-
     }
 
     const useUnsplash = async (imgSrc: string): Promise<any> => {
@@ -42,7 +38,6 @@ const AddForm = () => {
         return result?.response?.results[0].urls.regular
     }
     
-
     const ValidationSchema = Yup.object().shape({
         productName: Yup.string()
             .max(25, 'Too Long!')
@@ -65,9 +60,7 @@ const AddForm = () => {
                         saveProduct(values)
                         setSubmitting(false)
                         setIsCreate(false);
-                        
                     }, 400)
-
             }}
         >
 

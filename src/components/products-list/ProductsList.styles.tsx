@@ -12,7 +12,6 @@ export const Container = styled.div`
     padding-top: 5em;
 `;
 
-
 export const DescriptionContainer = styled.div`
     position: relative;
     top: -8em;
@@ -20,9 +19,7 @@ export const DescriptionContainer = styled.div`
     visibility: hidden;
     opacity: 0;
     transition: 0.3s ease-in-out;
-    
 `;
-
 
 export const Card = styled.div`
     position: relative;
@@ -31,7 +28,6 @@ export const Card = styled.div`
     background-color: var(--primary-dark-700);
     margin: 2em 0;
     padding: 1.5em .7em;
-
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -74,7 +70,6 @@ export const MainInfo = styled.div`
 
 `;
 
-
 export const ProductPrice = styled.h3`
     font-size: 1.2em;
     font-weight: bold;
@@ -103,7 +98,6 @@ export const Description = styled.p`
     color: var(--primary-dark-100);
 
 `;
-
 
 export const IconsWrapper = styled.div`
     display: flex;
@@ -137,7 +131,6 @@ export const IconEdit = styled.img`
     }
 `;
 
-
 export const IconDelete = styled.img`
     width: 20px;
     height: 20px;
@@ -149,6 +142,4 @@ export const IconDelete = styled.img`
         cursor: pointer;
         transform: rotate(90deg);
     }
-
-
 `;
