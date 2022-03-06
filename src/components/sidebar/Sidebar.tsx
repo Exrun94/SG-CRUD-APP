@@ -4,8 +4,11 @@ import IconFavorite from '../../images/sort-by-favorite.svg';
 import SortByAscName from '../../images/sort-asc.svg'
 import SortByPrice from '../../images/sort-by-price.svg'
 import SortByDate from '../../images/sort-by-date.svg'
+import useSort from '../../hooks/useSort'
 
 const Sidebar = () => {
+
+  const { sortByName, sortByPrice, sortByDate} = useSort()
 
   return (
     <>
@@ -14,13 +17,13 @@ const Sidebar = () => {
           <Icon icon={IconFavorite}/>
         </IconContainer>
         <IconContainer>
-          <Icon icon={SortByAscName}/>
+          <Icon icon={SortByAscName} onClick={sortByName}/>
         </IconContainer>
         <IconContainer>
-          <Icon icon={SortByPrice}/>
+          <Icon icon={SortByPrice} onClick={sortByPrice}/>
         </IconContainer>
         <IconContainer>
-          <Icon icon={SortByDate}/>
+          <Icon icon={SortByDate} onClick={sortByDate}/>
         </IconContainer>
       </SidebarContainer>
     </>
