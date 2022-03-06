@@ -5,6 +5,7 @@ export const GridContainer = styled.div`
     height: 100vh;
     overflow: auto;
     justify-content: center;
+    z-index: -2;
     background-color: var(--primary-dark-800);
     grid-template-columns: 60px 1fr; 
     grid-template-rows: 0.2fr 0.2fr 1fr; 

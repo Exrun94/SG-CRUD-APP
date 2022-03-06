@@ -6,22 +6,37 @@ import { collection, getDocs } from 'firebase/firestore';
 import { ProductContext } from '../../context/ProductContext';
 import { Container, Card, Image, ImgContainer, MainInfo, ProductName, ProductPrice, DescriptionContainer, Description, IconsWrapper, IconEdit, IconDelete  } from './ProductsList.styles'
 import { PermissionsContext } from '../../context/PermissionsContext';
+import { SortContext } from '../../context/SortContext';
 
 
 const ProductsList = () => {
     const { onProductChange, productsList, onSearch, setProductsList } = useContext(ProductContext);
+    const { sortBy } = useContext(SortContext);
     const { onUpdatePermission, onDeletePermission } = useContext(PermissionsContext);
-    const {onDelete, onUpdate, onFavorite} = useProducts();
+    const {onDelete, onUpdate} = useProducts();
     const productsCollectionRef = collection(db, 'Products');
 
     useEffect(() => {
         const getProducts = async () => {
             const data = await getDocs(productsCollectionRef);
             const result = data.docs.map((doc) => ({...doc.data(), id: doc.id}) as IProduct);
-            const sorted = result.sort((a, b) => {
-                return a.date - b.date
-            })
-            setProductsList(sorted);
+
+            if (sortBy === 'name') {
+                const sorted = result.sort((a, b) => {
+                    return a.productName.localeCompare(b.productName);
+                })
+                setProductsList(sorted);
+            } else if (sortBy === 'price') {
+                const sorted = result.sort((a, b) => {
+                    return a.price - b.price;
+                })
+                setProductsList(sorted);
+            } else if(sortBy === 'date') {
+                const sorted = result.sort((a, b) => {
+                    return a.date - b.date;
+                })
+                setProductsList(sorted);
+            }
         }
         getProducts();
     }, [onProductChange])

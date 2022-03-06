@@ -8,19 +8,19 @@ import useSort from '../../hooks/useSort'
 
 const Sidebar = () => {
 
-  const { sortByName, sortByPrice, sortByDate} = useSort()
+  const { sortByName, sortByPrice, sortByDate, activeName, activePrice, activeDate} = useSort()
 
   return (
     <>
       <SidebarContainer>
-        <IconContainer>
-          <Icon icon={SortByAscName} onClick={sortByName}/>
+        <IconContainer  onClick={sortByName} className={activeName ? 'active' : '' }>
+          <Icon icon={SortByAscName}/>
         </IconContainer>
-        <IconContainer>
-          <Icon icon={SortByPrice} onClick={sortByPrice}/>
+        <IconContainer onClick={sortByPrice} className={activePrice ? 'active' : '' }>
+          <Icon icon={SortByPrice}/>
         </IconContainer>
-        <IconContainer>
-          <Icon icon={SortByDate} onClick={sortByDate}/>
+        <IconContainer onClick={sortByDate} className={activeDate ? 'active' : '' }>
+          <Icon icon={SortByDate}/>
         </IconContainer>
       </SidebarContainer>
     </>
