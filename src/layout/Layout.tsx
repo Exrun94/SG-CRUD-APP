@@ -1,9 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import {
-  GridContainer,
-  UtilsContainer,
-  InvalidPermissions,
-} from "./Layout.styles";
 import { FrameMotionContext } from "../context/FrameMotionContext";
 import { PermissionsContext } from "../context/PermissionsContext";
 import HeaderComponent from "./HeaderComponent";
@@ -15,6 +10,11 @@ import MotionFrame from "../components/form/MotionFrame";
 import UpdateForm from "../components/form/UpdateForm";
 import CreateForm from "../components/form/CreateForm";
 import usePermissions from "../hooks/usePermissions";
+import {
+  GridContainer,
+  UtilsContainer,
+  InvalidPermissions,
+} from "./Layout.styles";
 
 const Layout = () => {
   const {

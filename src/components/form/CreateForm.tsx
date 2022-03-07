@@ -1,6 +1,12 @@
 import React, { FormEvent, useContext, useEffect, useState } from "react";
+import IProduct from "../../interfaces/Product";
+import * as Yup from "yup";
 import { FrameMotionContext } from "../../context/FrameMotionContext";
 import { Formik, FormikHelpers, FormikProps } from "formik";
+import { db } from "../../firebase";
+import { collection, addDoc } from "firebase/firestore";
+import { ProductContext } from "../../context/ProductContext";
+import { createApi } from "unsplash-js";
 import {
   StyledField,
   Unsplash,
@@ -12,12 +18,6 @@ import {
   InputWrapper,
   Error,
 } from "./Form.styles";
-import * as Yup from "yup";
-import { db } from "../../firebase";
-import { collection, addDoc } from "firebase/firestore";
-import { ProductContext } from "../../context/ProductContext";
-import IProduct from "../../interfaces/Product";
-import { createApi } from "unsplash-js";
 
 const api = createApi({
   accessKey: "viKl522r1TKUcjWViY0-y6Sp0788bYjYAIHkvJgnVxs",

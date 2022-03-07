@@ -4,6 +4,9 @@ import IProduct from "../../interfaces/Product";
 import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { ProductContext } from "../../context/ProductContext";
+import { PermissionsContext } from "../../context/PermissionsContext";
+import { SortContext } from "../../context/SortContext";
+import moment from "moment";
 import {
   Container,
   Card,
@@ -21,9 +24,6 @@ import {
   DescriptionHeader,
   DateAdded,
 } from "./ProductsList.styles";
-import { PermissionsContext } from "../../context/PermissionsContext";
-import { SortContext } from "../../context/SortContext";
-import moment from "moment";
 
 const ProductsList = () => {
   const {
