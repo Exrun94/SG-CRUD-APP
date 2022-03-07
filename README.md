@@ -10,10 +10,10 @@ You can also play with Firebase deployed [Project Demo]
 ## Features
 
 - The Basic CRUD Operations
-  -- Create Products
-  -- Read / Fetch Products from Database
-  -- Update Products
-  -- Delete Products
+  - Create Products
+  - Read / Fetch Products from Database
+  - Update Products
+  - Delete Products
 - Search filter
 - Sort
   -- Sort by Name
