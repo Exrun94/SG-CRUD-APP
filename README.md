@@ -10,7 +10,18 @@ You can also play with Firebase deployed [Project Demo]
 ## Instructions
 
 **Permissions**
-To Enable/Disable C-R-U-D
+To Enable/Disable C-R-U-D permissions by click on the corresponding letter in the logo
+eg: C - enables/disable Create permissions
+
+**Create Products**
+Click 'ADD PRODUCT button
+Fill out the form and optionally pick an image from the gallery given one is available.
+
+**Update Products**
+Hover over the product card with Update permissions enabled and click the pencil icon
+
+**Delete Products**
+Hover over the product card with Delete permissions enabled and click the X icon
 
 ## Features
 
@@ -51,6 +62,10 @@ Build
 ```
 yarn build
 ```
+
+## Code samples
+
+
 
 [unsplash]: https://unsplash.com/
 [react]: https://reactjs.org/
