@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const Container = styled.div`
   display: flex;
@@ -33,7 +33,7 @@ export const MotionMenu = styled(motion.div)`
   -webkit-backdrop-filter: blur(30px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 25px;
-  border-radius: .8em;
+  border-radius: 0.8em;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -43,7 +43,6 @@ export const MotionMenu = styled(motion.div)`
   @media (max-width: 1024px) {
     width: 100%;
   }
-
 `;
 
 export const Heading = styled.h1`
@@ -51,4 +50,3 @@ export const Heading = styled.h1`
   font-weight: 400;
   color: var(--primary-dark-200);
 `;
-

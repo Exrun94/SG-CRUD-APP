@@ -1,13 +1,12 @@
-import React from 'react';
-import Logo from '../components/logo/Logo';
+import React from "react";
+import Logo from "../components/logo/Logo";
 
 const HeaderComponent: React.FC = () => {
-
   return (
     <>
-        <Logo/>
+      <Logo />
     </>
-  )
-}
+  );
+};
 
-export default HeaderComponent
+export default HeaderComponent;
