@@ -37,13 +37,15 @@ Hover over the product card with Delete permissions enabled and click the X icon
   - Read / Fetch Products from Database
   - Update Products
   - Delete Products
+- CRUD Permissions Control
+  - Enable / Disable the individual CRUD operations
+- Image suggestions based on the input from the form
 - Search filter
 - Sort
   - Sort by Name
   - Sort by Price
   - Sort by Date
-- CRUD Permissions Control
-  - Enable / Disable the individual CRUD operations
+
 
 ## Tech used in the project
 
