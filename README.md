@@ -3,9 +3,14 @@
 ## Description
 
 This app allows you to add 'mockup' products with Name, Price, Currency and Image.
-An images gallery load are fetched automatically based on input via [Unsplash] API
+The images gallery is fetched automatically based on input via [Unsplash] API.
 React components are build using [styled-components]
 You can also play with Firebase deployed [Project Demo]
+
+## Instructions
+
+**Permissions**
+To Enable/Disable C-R-U-D
 
 ## Features
 
@@ -55,4 +60,4 @@ yarn build
 [yup]: https://www.npmjs.com/package/yup?activeTab=readme
 [firebase]: https://firebase.google.com/
 [typescript]: https://www.typescriptlang.org/
-[project demo]: https://crude-app-3ef78.web.app/
+[Project Demo]: https://crude-app-3ef78.web.app/

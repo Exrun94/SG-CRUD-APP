@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const PrimaryButton = styled.button`
   color: var(--accent-dark-400);
   background-color: transparent;
-  margin-left: auto;
+  /* margin-left: auto; */
   cursor: pointer;
   font-size: 16px;
   font-weight: 400;

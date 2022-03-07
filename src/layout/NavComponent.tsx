@@ -1,10 +1,10 @@
 import React from "react";
-import Sidebar from "../components/sidebar/Sidebar";
+import Nav from "../components/nav/Nav";
 
 const SidebarComponent = () => {
   return (
     <>
-      <Sidebar />
+      <Nav />
     </>
   );
 };

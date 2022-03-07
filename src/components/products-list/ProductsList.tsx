@@ -39,13 +39,14 @@ const ProductsList = () => {
   const { onDelete, onUpdate } = useProducts();
   const productsCollectionRef = collection(db, "Products");
 
+    // Fetches the products from Firebase, then sorts and Sets in setProductList / Context
   useEffect(() => {
     const getProducts = async () => {
       const data = await getDocs(productsCollectionRef);
       const result = data.docs.map(
         (doc) => ({ ...doc.data(), id: doc.id } as IProduct)
       );
-
+        
       if (sortBy === "name") {
         const sorted = result.sort((a, b) => {
           return a.productName.localeCompare(b.productName);

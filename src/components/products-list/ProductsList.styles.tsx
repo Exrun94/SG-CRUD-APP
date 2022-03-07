@@ -19,10 +19,13 @@ function nthChild() {
 
 export const Container = styled.div`
   position: relative;
+  height: 100%;
   display: grid;
   grid-row-gap: 2em;
   grid-template-columns: repeat(auto-fill, 23em);
-  padding-top: 5em;
+  padding-top: 3em;
+  justify-content: center;
+
 `;
 
 export const DescriptionContainer = styled.div`

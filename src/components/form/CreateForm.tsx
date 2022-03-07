@@ -6,6 +6,7 @@ import unsplash from "../../utils/unsplash";
 import { FrameMotionContext } from "../../context/FrameMotionContext";
 import { Formik, FormikHelpers, FormikProps } from "formik";
 import useProducts from "../../hooks/useProducts";
+import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 import {
   StyledField,
   Unsplash,
@@ -20,15 +21,15 @@ import {
 
 const AddForm = () => {
   const [images, setImages] = useState<string[]>([]);
-  const [chosenImage, setChosenImage] = useState(
-    "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930"
-  );
+  const [chosenImage, setChosenImage] = useState("https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930");
   const [input, setInput] = useState("");
   const [imgIndex, setImgIndex] = useState<null | number>(null);
+  const [loading, setLoading] = useState(false);
 
   const { setIsCreate } = useContext(FrameMotionContext);
   const { saveProduct } = useProducts();
 
+  // Fetches the images from the Unsplash API based on the productName input
   useEffect(() => {
     const fetchImages = async () => {
       const result = await unsplash(input);
@@ -37,15 +38,19 @@ const AddForm = () => {
     fetchImages();
   }, [input]);
 
+  // Listens for the current ProductName input to be used in the unsplash fetch
   const handleOnChange = (event: FormEvent) => {
     const target = event.target as HTMLInputElement;
+    setLoading(true)
     if (target.className.includes("target")) {
       setTimeout(() => {
         setInput(target.value);
+        setLoading(false);
       }, 2000);
     }
   };
 
+  // Finds current selected image in the Form to add styling and sets the URL in the useState hook
   const handleImage = (
     event: React.MouseEvent<HTMLImageElement, MouseEvent>,
     i: number
@@ -122,6 +127,7 @@ const AddForm = () => {
               )}
             </InputWrapper>
 
+            {loading ? <LoadingSpinner/> : 
             <Unsplash>
               {images.map((img: string, i: number) => (
                 <Img
@@ -133,7 +139,7 @@ const AddForm = () => {
                   }}
                 />
               ))}
-            </Unsplash>
+            </Unsplash>}
 
             <ButtonWrapper>
               <Button fill="#10B981" type="submit" disabled={isSubmitting}>

@@ -12,17 +12,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --card-animation-delay: 100ms;
+  background-color: #1d2025;
 
-  --primary: #6127bc;
-  --primary-light: #b894e4;
-  --primary-dark: #3d1f70;
-  --accent-1: #8c54b4;
-  --accent-2: #b9a7cf;
-  --accent-3: #3c4444;
-  --light-1: #ededed;
-  --light-2: #f6f6f6;
-  --light-3: #ecddff;
 
   --primary-dark-800: #1d2025;
   --primary-dark-700: #262a31;
@@ -37,6 +28,7 @@ body {
   --accent-dark-200: #14eba4;
   --accent-dark-100: #8af5d1;
   --accent-dark-50: #e1fff5;
+
 }
 
 code {

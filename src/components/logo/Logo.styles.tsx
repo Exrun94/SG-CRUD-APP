@@ -4,8 +4,10 @@ interface styledProps {
   animationDelay: string;
 }
 
+
 export const Header = styled.header`
   display: flex;
+  margin: 0 auto;
   gap: 2.1em;
   grid-area: head;
 `;
@@ -26,6 +28,7 @@ export const Span = styled("span")`
 
   &:hover {
     cursor: pointer;
+    text-decoration: underline;
   }
 
   @keyframes wave {
@@ -47,3 +50,4 @@ export const Span = styled("span")`
     }
   }
 `;
+

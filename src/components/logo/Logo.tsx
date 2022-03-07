@@ -4,12 +4,14 @@ import { PermissionsContext } from "../../context/PermissionsContext";
 import usePermissions from "../../hooks/usePermissions";
 
 const Logo = () => {
+  // Components Sets the corresponding permissions on each mapped letter in the context and database
   const {
     onCreatePermission,
     onUpdatePermission,
     onDeletePermission,
     onReadPermission,
   } = useContext(PermissionsContext);
+
   const {
     createPermission,
     readPermission,
