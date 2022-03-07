@@ -1,12 +1,11 @@
 import React, { FormEvent, useContext, useEffect, useState } from "react";
 import IProduct from "../../interfaces/Product";
-import * as Yup from "yup";
+import formValidationSchema from "../../utils/formValidationSchema";
+import formInitialValues from "../../utils/formInitialValues";
+import unsplash from "../../utils/unsplash";
 import { FrameMotionContext } from "../../context/FrameMotionContext";
 import { Formik, FormikHelpers, FormikProps } from "formik";
-import { db } from "../../firebase";
-import { collection, addDoc } from "firebase/firestore";
-import { ProductContext } from "../../context/ProductContext";
-import { createApi } from "unsplash-js";
+import useProducts from "../../hooks/useProducts";
 import {
   StyledField,
   Unsplash,
@@ -19,10 +18,6 @@ import {
   Error,
 } from "./Form.styles";
 
-const api = createApi({
-  accessKey: "viKl522r1TKUcjWViY0-y6Sp0788bYjYAIHkvJgnVxs",
-});
-
 const AddForm = () => {
   const [images, setImages] = useState<string[]>([]);
   const [chosenImage, setChosenImage] = useState(
@@ -32,41 +27,12 @@ const AddForm = () => {
   const [imgIndex, setImgIndex] = useState<null | number>(null);
 
   const { setIsCreate } = useContext(FrameMotionContext);
-  const { onProductChange, setOnProductChange } = useContext(ProductContext);
-  const productsCollectionRef = collection(db, "Products");
-
-  const initialValues: IProduct = {
-    id: "",
-    productName: "",
-    price: 0,
-    currency: "",
-    date: Date.now(),
-    imgSrc: "",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, dignissimos voluptates laudantium exercitationem voluptatem debitis delectus corporis beatae ut",
-  };
-
-  const saveProduct = async (data: IProduct) => {
-    data.imgSrc = chosenImage;
-    data.productName =
-      data.productName.charAt(0).toUpperCase() + data.productName.slice(1);
-    await addDoc(productsCollectionRef, data);
-    setOnProductChange(!onProductChange);
-  };
-
-  const useUnsplash = async (imgSrc: string): Promise<any> => {
-    const result = await api.search.getPhotos({
-      query: imgSrc,
-      orientation: "landscape",
-    });
-    return result?.response?.results;
-  };
+  const { saveProduct } = useProducts();
 
   useEffect(() => {
     const fetchImages = async () => {
-      const unsplash = await useUnsplash(input);
-      console.log(unsplash);
-      setImages(unsplash.map((img: any) => img.urls.regular));
+      const result = await unsplash(input);
+      setImages(result.map((img: any) => img.urls.regular));
     };
     fetchImages();
   }, [input]);
@@ -90,29 +56,17 @@ const AddForm = () => {
     setImgIndex(i);
   };
 
-  const ValidationSchema = Yup.object().shape({
-    productName: Yup.string()
-      .max(25, "Too Long!")
-      .required("Product name is required"),
-    price: Yup.number()
-      .min(1, "Price must be greater than 0")
-      .max(1000000, "What are you Jeff Bezos??")
-      .required("Price is required"),
-    currency: Yup.string()
-      .max(3, "Invalid currency, must be 3 characters")
-      .required("Currency is required"),
-  });
   return (
     <>
       <Formik
-        initialValues={initialValues}
-        validationSchema={ValidationSchema}
+        initialValues={formInitialValues}
+        validationSchema={formValidationSchema}
         onSubmit={(
           values: IProduct,
           { setSubmitting }: FormikHelpers<IProduct>
         ) => {
           setTimeout(() => {
-            saveProduct(values);
+            saveProduct(values, chosenImage);
             setSubmitting(false);
             setIsCreate(false);
           }, 400);

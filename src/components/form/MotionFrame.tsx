@@ -1,5 +1,5 @@
 import React from "react";
-import dropIn from "./MotionFrame.config";
+import dropIn from "../../utils/dropIn";
 import { Container, Wrapper, MotionMenu, Heading } from "./MotionFrame.styles";
 
 const MotionFrame: React.FC<React.ReactNode> = ({ children }) => {

@@ -1,12 +1,28 @@
 import { useContext } from "react";
 import { db } from "../firebase";
-import { updateDoc, doc, deleteDoc } from "firebase/firestore";
+import {
+  updateDoc,
+  doc,
+  deleteDoc,
+  collection,
+  addDoc,
+} from "firebase/firestore";
 import { ProductContext } from "../context/ProductContext";
 import { FrameMotionContext } from "../context/FrameMotionContext";
+import IProduct from "../interfaces/Product";
 
 const useProducts = () => {
   const { onProductChange, setOnProductChange } = useContext(ProductContext);
   const { setIsUpdate, setUpdateData } = useContext(FrameMotionContext);
+  const productsCollectionRef = collection(db, "Products");
+
+  const saveProduct = async (data: IProduct, img: string) => {
+    data.imgSrc = img;
+    data.productName =
+      data.productName.charAt(0).toUpperCase() + data.productName.slice(1);
+    await addDoc(productsCollectionRef, data);
+    setOnProductChange(!onProductChange);
+  };
 
   const onUpdateData = async (
     id: string,
@@ -54,7 +70,7 @@ const useProducts = () => {
     }
   };
 
-  return { onDelete, onUpdate, onUpdateData, onFavorite };
+  return { onDelete, onUpdate, onUpdateData, onFavorite, saveProduct };
 };
 
 export default useProducts;

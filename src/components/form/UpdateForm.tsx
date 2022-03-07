@@ -1,6 +1,10 @@
 import React, { useContext } from "react";
 import { FrameMotionContext } from "../../context/FrameMotionContext";
 import { Formik, FormikHelpers, FormikProps } from "formik";
+import * as Yup from "yup";
+import IProduct from "../../interfaces/Product";
+import useProducts from "../../hooks/useProducts";
+import formValidationSchema from "../../utils/formValidationSchema";
 import {
   StyledField,
   StyledForm,
@@ -10,14 +14,6 @@ import {
   InputWrapper,
   Error,
 } from "./Form.styles";
-import * as Yup from "yup";
-import IProduct from "../../interfaces/Product";
-import { createApi } from "unsplash-js";
-import useProducts from "../../hooks/useProducts";
-
-const api = createApi({
-  accessKey: "viKl522r1TKUcjWViY0-y6Sp0788bYjYAIHkvJgnVxs",
-});
 
 const UpdateForm = () => {
   const { setIsUpdate, updateData } = useContext(FrameMotionContext);
@@ -34,23 +30,11 @@ const UpdateForm = () => {
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, dignissimos voluptates laudantium exercitationem voluptatem debitis delectus corporis beatae ut",
   };
 
-  const ValidationSchema = Yup.object().shape({
-    productName: Yup.string()
-      .max(25, "Too Long!")
-      .required("Product name is required"),
-    price: Yup.number()
-      .min(1, "Price must be greater than 0")
-      .max(1000000, "What are you Jeff Bezos??")
-      .required("Price is required"),
-    currency: Yup.string()
-      .max(3, "Invalid currency, must be 3 characters")
-      .required("Currency is required"),
-  });
   return (
     <>
       <Formik
         initialValues={initialValues}
-        validationSchema={ValidationSchema}
+        validationSchema={formValidationSchema}
         onSubmit={(
           values: IProduct,
           { setSubmitting }: FormikHelpers<IProduct>
