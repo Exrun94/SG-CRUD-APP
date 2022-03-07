@@ -4,6 +4,8 @@ import { updateDoc, doc, getDoc } from "firebase/firestore";
 import { PermissionsContext } from "../context/PermissionsContext";
 import IPermissions from "../interfaces/Permissions";
 
+// Saves permissions in Firebase and in the Context API
+
 const usePermissions = () => {
   const {
     setOnCreatePermission,

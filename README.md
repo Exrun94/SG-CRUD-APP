@@ -5,22 +5,28 @@
 This app allows you to add 'mockup' products with Name, Price, Currency and Image.
 The images gallery is fetched automatically based on input via [Unsplash] API.
 React components are build using [styled-components]
-You can also play with Firebase deployed [Project Demo]
+Project is deployed on Firebase [Project Demo]
 
 ## Instructions
 
-**Permissions**
-To Enable/Disable C-R-U-D permissions by click on the corresponding letter in the logo
+**Permissions:**
+Permissions are persistent and stored in Firebase
+
+To Enable/Disable C-R-U-D permissions click on the corresponding letter in the logo
 eg: C - enables/disable Create permissions
 
-**Create Products**
+
+**Create Products:**
+
 Click 'ADD PRODUCT button
 Fill out the form and optionally pick an image from the gallery given one is available.
 
-**Update Products**
+**Update Products:**
+
 Hover over the product card with Update permissions enabled and click the pencil icon
 
-**Delete Products**
+**Delete Products:**
+
 Hover over the product card with Delete permissions enabled and click the X icon
 
 ## Features
