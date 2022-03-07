@@ -10,6 +10,7 @@ Project is deployed on Firebase [Project Demo]
 ## Instructions
 
 **Permissions:**
+
 Permissions are persistent and stored in Firebase
 
 To Enable/Disable C-R-U-D permissions click on the corresponding letter in the logo
