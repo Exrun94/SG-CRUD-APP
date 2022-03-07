@@ -16,11 +16,11 @@ You can also play with Firebase deployed [Project Demo]
   - Delete Products
 - Search filter
 - Sort
-  -- Sort by Name
-  -- Sort by Price
-  -- Sort by Date
+  - Sort by Name
+  - Sort by Price
+  - Sort by Date
 - CRUD Permissions Control
-  -- Enable / Disable the individual CRUD operations
+  - Enable / Disable the individual CRUD operations
 
 ## Tech used in the project
 
